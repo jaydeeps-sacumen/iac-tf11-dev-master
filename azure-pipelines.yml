@@ -1,0 +1,11 @@
+# Starter pipeline
+steps:
+- task: Prisma Cloud IaC Scan@1
+  inputs:
+    Path: '.'
+    prismaCloudService: 'API-SL-QA'
+    High: '0'
+    Medium: '0'
+    Low: '0'
+    Operator: 'or'
+    Tags: 'tags'
