@@ -14,11 +14,11 @@ To enable logs collection for Datadog Agent, we need to below information.
  - PANOS System
  - PANOS Server Profile
 
-###API-KEY from Datadog
+### API-KEY from Datadog
 API-Key is required to send the logs to Datadog over REST API calls. You can login to datadog 
 and select integrations option on left side menu. After selecting integrations options you need to select API sub option and generate the API-Key 
 
-###PANOS System
+### PANOS System
 
 You need PANOS system access to configure the server profile which will allows you to forward the logs to http destination (Datadog). You can configure any of below logs which is required to configure, it's not mandatory to configure all of these logs.
 
