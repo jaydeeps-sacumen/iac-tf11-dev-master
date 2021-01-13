@@ -20,7 +20,7 @@ and select integrations option on left side menu. After selecting integrations o
 
 ### PANOS System
 
-You need PANOS system access to configure the server profile which will allows you to forward the logs to http destination (Datadog). You can configure any of below logs which is required to configure, it's not mandatory to configure all of these logs.
+You need PANOS system access to configure the server profile which will allows you to forward the logs to http destination (Datadog). You can configure any of below logs which is required to configure, it's not mandatory to configure all of these logs. Please copy log payload by clicking on each log type below.
 
 <details>
 <summary><i>Traffic Log </i> </summary>
@@ -83,47 +83,19 @@ You need PANOS system access to configure the server profile which will allows y
 ### PANOS server profile
 Configure the firewall to send an HTTP-based API request directly to a third-party service to trigger an action based on the attributes in a firewall log. Login to PANOS System and follow below steps.
 
+- Create an HTTP server profile.      
+   * Select Device >> Server Profiles >> HTTP, add a Name for the server profile, select the Location, Enter a Name, IP Address, HTTPS protocol, method as POST, username and password if available. Finally click on test connection.
 
-- Create an HTTP server profile to forward logs to an HTTP(S) destination.
-   
-   The HTTP server profile allows you to specify how to access the server and define the format in which to forward logs to the HTTP(S) destination
-   
-   * Select DeviceServer ProfilesHTTP, add a Name for the server profile, and select the Location. The profile can be Shared across all virtual systems or can belong to a specific virtual system.
-   * Click Add to provide the details for each server. Each profile can have a maximum of 4 servers.
-   * Enter a Name and IP Address.
-   * Select the Protocol (HTTP or HTTPS). The default Port is 80 or 443 respectively; you can modify the port number to match the port on which your HTTP server listens.
-   * Select the HTTP Method as POST.
-   * Enter the Username and Password for authenticating to the server, if needed. Click OK.
-   * Select Test Server Connection to verify network connectivity between the firewall and the HTTP(S) server.
-   
-- Select the Payload Format for the HTTP request.
+- Select the Payload format.
 
-   * Select the Log Type link for each log type for which you want to define the HTTP request format.
-   * URI Format should be data dog URL.
-   * Click on HTTP Header's Add button and add DD-API-KEY from data dog and Content-Type as text/plain.
-   * Select the Pre-defined Formats drop-down to view the formats available through content updates, or create a custom format.
-   * Send Test Log to verify that the HTTP server receives the request. When you interactively send a test log, the firewall uses the format as is and does not replace the variable with a value from a firewall log. If your HTTP server sends a 404 response, provide values for the parameters so that the server can process the request successfully.
+   * Select the Log Type link, URI format (datadog REST API URL) and copy respective log payload from earlier step. In HTTP Header's click on add button and then  add DD-API-KEY from data dog and Content-Type as text/plain.
     
-- Define the match criteria for when the firewall will forward logs to the HTTP server, and attach the HTTP server profile to use.
+- Define the match criteria.
    
-   * Select the log types for which you want to trigger a workflow:
-   Add a Log Forwarding Profile (ObjectsLog Forwarding Profile) for logs that pertain to user activity. For example, Traffic, Threat, or Authentication logs.
-   Select DeviceLog Settings for logs that pertain to system events, such as Configuration or System logs.
-   * Select the Log Type and use the new Filter Builder to define the match criteria.
-   * Add the HTTP server profile for forwarding logs to the HTTP destination.
-   * Add a tag to the source or destination IP address in the log entry. This capability allows you to use dynamic address groups and security policy rules to limit network access or isolate the IP address until you can triage the affected user device.
-    Select Add in the Built-in Actions section and select the Target, Action: Add Tag, and Registration to register the tag to the local User-ID on a firewall or to the Panorama that is managing the firewall.
+   * Select the log types for which you want to trigger a workflow and use the new Filter Builder to define the match criteria. Finally add the HTTP server profile for forwarding logs to datadog.
 
-- Register or unregister a tag on a source or destination IP address in a log entry to a remote User-ID agent.
-   
-   * Select DeviceServer ProfilesHTTP, add a Name for the server profile, and select the Location. The profile can be Shared across all virtual systems or can belong to a specific virtual system.
-   * Select Tag Registration to enable the firewall to register the IP address and tag mapping with the User-ID agent on a remote firewall. With tag registration enabled, you cannot specify the payload format.
-   * Add the connection details to access the remote User-ID agent.
-   * Select the log type (ObjectsLog Forwarding Profile or DeviceLog Settings) for which you want to add a tag to the source or destination IP address in the log entry.
-   * Select Add in the Built-in Actions section and Name the action. Select the following options to register the tag on the remote User-ID agent:
-    Target: Select source or destination IP address. Action: Add Tag or Remove Tag.
-    Registration: Remote User-ID agent.HTTP Profile: Select the profile you created with Tag Registration enabled.
-    Tag: Enter a new tag or select from the drop-down.
+
+For more information, consult the  [Forward Logs to an HTTP(S) Destination](https://docs.paloaltonetworks.com/pan-os/8-1/pan-os-admin/monitoring/forward-logs-to-an-https-destination).
 
 For more information on log types and fields check below links
  
