@@ -2,17 +2,17 @@
 
 ## Overview
 
-Datadog's Palo Alto Networks Firewall Log integration allows customers to ingest, parse and analyse Palo Alto Networks Firewall Logs. This log integration relies upon HTTPs log templating and forwarding capability provided by PAN OS, the operating system that runs in Palo Alto fireewalls. PAN OS allows customers to forward  threat, traffic, authentication and many other important log events.
+Datadog's Palo Alto Networks Firewall Log integration allows customers to ingest, parse and analyze Palo Alto Networks Firewall Logs. This log integration relies upon HTTPS log templating and forwarding capability provided by PAN OS, the operating system that runs in Palo Alto firewalls. PAN-OS allows customers to forward threat, traffic, authentication, and many other important log events.
 
 ### Key Use Cases
 #### Respond to high severity threat events
-Firewall threat logs provide rich context on threats deteected by the firewall which can be filtered and analysed by severity, type, origin IPs/countries and more. 
+Firewall threat logs provide rich context on threats detected by the firewall which can be filtered and analyzed by severity, type, origin IPs/countries, and more. 
 
 #### Make informed decisions on Firewall deployment
-Firewall traffic logs can be used to measure the traffic and sessions passing through the firewalls and also gives you the ability to monitor for anomolous throughput across firewall deployment.
+Firewall traffic logs can be used to measure the traffic and sessions passing through the firewalls and also gives you the ability to monitor for anomalous throughput across firewall deployment.
 
 #### Monitor authentication anomalies
-Firewall authentication logs provide detailed information on users as they authenticate with Palo Alto Networks Firewall. These logs can be used to monitor anomalous spikes in authetication traffic from specifc protocols, users, locations and more.
+Firewall authentication logs provide detailed information on users as they authenticate with Palo Alto Networks Firewall. These logs can be used to monitor anomalous spikes in authentication traffic from specific protocols, users, locations, and more.
 
 ## Setup
 
