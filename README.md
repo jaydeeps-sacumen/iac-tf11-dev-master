@@ -58,16 +58,15 @@ Firewall authentication logs provide detailed information on users as they authe
      |  `Content-Type`               |  text/plain   |    
 
  9. Click ok and Send Test Log to verify that the HTTP server receives the request
-  
-For more information, consult the  [Forward Logs to an HTTP(S) Destination](https://docs.paloaltonetworks.com/pan-os/8-1/pan-os-admin/monitoring/forward-logs-to-an-https-destination).
-
-For more information on log types and fields check below links
  
- - https://docs.paloaltonetworks.com/pan-os/9-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions
+ 10. Reference Links.
  
-For more information, consult the [Logs Collection documentation](https://docs.datadoghq.com/logs/log_collection/?tab=tailexistingfiles#getting-started-with-the-agent).
-
-For more information, refer to the [Datadog API documentation for creating a dashboard](https://docs.datadoghq.com/api/?lang=bash#create-a-dashboard).
+     | Setting     	                   | Description                                                |
+     | -------------------------------| ---------------------------------------------------------- |
+     | `PAN-OS System Setup`                  |  [Forward Logs to an HTTP(S) Destination](https://docs.paloaltonetworks.com/pan-os/8-1/pan-os-admin/monitoring/forward-logs-to-an-https-destination)							|
+     |  `Log types and fields`               |  https://docs.paloaltonetworks.com/pan-os/9-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions    |    
+     | `Log Collection`                  |  [Logs Collection documentation](https://docs.datadoghq.com/logs/log_collection/?tab=tailexistingfiles#getting-started-with-the-agent)							|
+     | `API Document`                  |  [Datadog API documentation for creating a dashboard](https://docs.datadoghq.com/api/?lang=bash#create-a-dashboard)	|
 
 ## Data Collected
 
