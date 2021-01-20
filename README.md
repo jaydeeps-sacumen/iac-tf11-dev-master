@@ -61,7 +61,7 @@ Firewall authentication logs provide detailed information on users as they authe
  
  10. Reference Links.
  
-     | Setting     	                   | Description                                                |
+     | Topic     	                   | Links                                                |
      | -------------------------------| ---------------------------------------------------------- |
      | `PAN-OS System Setup`                  |  [Forward Logs to an HTTP(S) Destination](https://docs.paloaltonetworks.com/pan-os/8-1/pan-os-admin/monitoring/forward-logs-to-an-https-destination)							|
      |  `Log types and fields`               |  https://docs.paloaltonetworks.com/pan-os/9-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions    |    
