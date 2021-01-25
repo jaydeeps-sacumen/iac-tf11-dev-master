@@ -18,17 +18,14 @@ Firewall authentication logs provide detailed information on users as they authe
 
 ### Set up Palo Alto Networks Firewall log collection 
 
- 1. Login to Palo Alto Networks Firewall System
- 2. Select Device >> Server Profiles >> HTTP, add a name for the server profile and select the location to create a server profile.
+ 1. [Install the Datadog Agent](https://app.datadoghq.com/account/settings#agent)
+ 2. Select Device >> Server Profiles >> Syslog , add a name for the server profile. Follow the Syslog log forwarding configuration steps [Syslog Forwarding](https://www.youtube.com/watch?v=LOPXg0oCMPs)
  3. Click Add and provide the following details of the server:
-	* Name of the server
-	* IP address of the server 
-	* Select HTTPS protocol
-	* Select HTTP method as POST
-	* Provide username and password for authentication
- 4. Select Test Server Connection to verify the server connection.
- 5. Select the Payload format tab and select the Log Type you want to configure.
- 6. Provide the Name and Payload based on the logtype you selected as per the table below.
+ 	* Name of the server
+ 	* IP address of the syslog server 
+ 	* Transport as TCP
+ 	* Port as 10518 and format as BSD
+ 4. Copy and configure custom log format for the required log type.
 
     | Name     	                   | Format                                                |
     | -------------------------------| ---------------------------------------------------------- |
@@ -44,20 +41,19 @@ Firewall authentication logs provide detailed information on users as they authe
     | Correlated Events Log | <details> <summary><i> View Payload </i></summary> <p> timestamp=$time_generated, serial=$serial, type=$type, subtype=$subtype,	vsys=$vsys,	evt.name=$eventid,	object=$object,	module=$module,	severity=$severity,	opaque=$opaque,	seqno=$seqno, actionflags=$actionflags, vsys_name=$vsys_name,	device_name=$device_name  </p> </details> |
     | GTP Log  | <details> <summary><i> View Payload </i></summary> <p> timestamp=$start, serial=$serial, type=$type, subtype=$subtype,	network.client.ip=$src,	network.destination.ip=$dst, rule=$rule, app=$app, vsys=$vsys,	from=$from,	to=$to,	inbound_if=$inbound_if,	outbound_if=$outbound_if, logset=$logset,	sessionid=$sessionid,	network.client.port=$sport,	network.destination.port=$dport, proto=$proto,	evt.name=$action,	event_type=$event_type,	msisdn=$msisdn,	apn=$apn,	rat=$rat,	msg_type=$msg_type,	end_ip_adr=$end_ip_adr,	teid1=$teid1,	teid2=$teid2,	gtp_interface=$gtp_interface,	cause_code=$cause_code,	severity=$severity,	mcc=$mcc,	mnc=$mnc,	area_code=$area_code,	cell_id=$cell_id,	event_code=$event_code,	srcloc=$srcloc,	dstloc=$dstloc,	imsi=$imsi,	imei=$imei,	start=$start,	elapsed=$elapsed,	tunnel_insp_rule=$tunnel_insp_rule  </p> </details> |
 
- 7. Provide the URI format as mentioned below.
-
-     | Setting     	                   | Description                                                |
-     | -------------------------------| ---------------------------------------------------------- |
-     | `URI Format`                  | If you are in the Datadog EU site (https://http-intake.logs.datadoghq.eu/v1/input?ddsource=pan.firewall&ddtags=optional), otherwise it should be `GLOBAL`  (https://http-intake.logs.datadoghq.com/v1/input?ddsource=pan.firewall&ddtags=optional)   |
-
- 8. In HTTP Header's click on add button and then add DD-API-KEY and content-type and click ok.
+ 5. Click OK, this will create syslog server profile.
+ 6. Click on the Objects tab, this will open the log forwarding profile screen.
+ 7. Create log forwarding profile by providing the name, log type and syslog profile 
+ 8. Create a pan.firewall.d/conf.yaml file at the root of  [Agent’s configuration directory](https://docs.datadoghq.com/agent/guide/agent-configuration-files/?tab=agentv6v7)  with the above content and restart agent
  
-     | Setting     	                   | Description                                                |
-     | -------------------------------| ---------------------------------------------------------- |
-     | `DD-API-KEY`                  | [Create your Datadog API Key  ](https://app.datadoghq.com/account/settings#api) 							|
-     |  `Content-Type`               |  text/plain   |    
-
- 9. Click ok and Send Test Log to verify that the HTTP server receives the request
+     ```yaml
+     logs:
+     - type: tcp
+       port: 10518
+       service: "firewall"
+       source: "pan.firewall"
+     ```
+ 9. [Restart Agent](https://docs.datadoghq.com/agent/guide/agent-commands/#start-stop-and-restart-the-agent)
  
 ## Data Collected
 
@@ -77,7 +73,6 @@ The PANOS integration does not include any service checks.
 
 Additional helpful documentation, links, and articles:
 
-- [Forward Logs to an HTTP(S) Destination](https://docs.paloaltonetworks.com/pan-os/8-1/pan-os-admin/monitoring/forward-logs-to-an-https-destination)
 - [Log types and fields](https://docs.paloaltonetworks.com/pan-os/9-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions)
 - [Logs Collection documentation](https://docs.datadoghq.com/logs/log_collection/?tab=tailexistingfiles#getting-started-with-the-agent)
-- [Datadog API documentation for creating a dashboard](https://docs.datadoghq.com/api/?lang=bash#create-a-dashboard)
+
