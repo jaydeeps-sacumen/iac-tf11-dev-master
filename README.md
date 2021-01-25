@@ -19,7 +19,7 @@ Firewall authentication logs provide detailed information on users as they authe
 ### Set up Palo Alto Networks Firewall log collection 
 
  1. [Install the Datadog Agent](https://app.datadoghq.com/account/settings#agent)
- 2. Select Device >> Server Profiles >> Syslog , add a name for the server profile. Follow the Syslog log forwarding configuration steps [Syslog Forwarding](https://www.youtube.com/watch?v=LOPXg0oCMPs)
+ 2. Select Device >> Server Profiles >> Syslog , add a name for the server profile. Follow the Syslog log forwarding [configuration steps](https://www.youtube.com/watch?v=LOPXg0oCMPs). Same steps listed below.
  3. Click Add and provide the following details of the server:
  	* Name of the server
  	* IP address of the syslog server 
